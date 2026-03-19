@@ -22,11 +22,19 @@
     userdata_1 = window.atob(window.atob("YUhSMGNITTZMeTlrWlhaa1kyOXljQzFqWVRZMk15NTNaV0l1WVhCd0x3PT0="))
     function openGame(url) {
         var win = window.open();
-        var iframe = document.createElement("iframe")
-        iframe.style.border = "none";
-        iframe.style.width = "100%";
-        iframe.style.height = "100%"
-        iframe.style.margin = "0";
+        win.document.open();
+        win.document.write('<!DOCTYPE html><html><head><style>*{margin:0;padding:0;overflow:hidden;}html,body{width:100%;height:100%;background:black;}</style></head><body></body></html>');
+        win.document.close();
+
+        const iframe = win.document.createElement("iframe");
+        iframe.style.cssText = `
+            border: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        `;
         iframe.sandbox = "allow-scripts allow-same-origin allow-forms allow-popups";
         iframe.src = url;
         win.document.body.appendChild(iframe);
